@@ -1,11 +1,14 @@
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import Comment from "./Comment/Comment";
 
 const BlogDetails = () => {
     const blog = useLoaderData()
     const { category, image, long_description, short_description, title, _id } = blog
     const { user } = useAuth()
+    const [comments, setComments] = useState([])
 
     const handleComment = event => {
         event.preventDefault()
@@ -22,6 +25,17 @@ const BlogDetails = () => {
                 console.log(res.data);
             })
     }
+
+
+    // get comment data 
+    useEffect(() => {
+        axios.get('http://localhost:5000/all-comments')
+            .then(res => {
+                const data = res.data
+                console.log(data);
+                setComments(data)
+            })
+    }, [])
 
 
 
@@ -64,7 +78,12 @@ const BlogDetails = () => {
 
             {/* comments */}
             <div>
-
+                {
+                    comments.map(comment => <Comment
+                        key={comment._id}
+                        comment={comment}
+                    ></Comment>)
+                }
             </div>
 
             {/* add comment */}
