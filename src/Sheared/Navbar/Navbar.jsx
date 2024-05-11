@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
@@ -19,6 +19,13 @@ const Navbar = () => {
         <div className="navbar bg-base-100">
             <div className="flex-1">
                 <a className="btn btn-ghost text-xl">BLOGOSPHERE BUZZ</a>
+            </div>
+            <div className=" justify-center">
+                <li><NavLink to='/'>Home</NavLink></li>
+                <li><NavLink to='/add-blog'>Add Blog</NavLink></li>
+                <li><NavLink to='/all-blogs'>All blogs</NavLink></li>
+                <li><NavLink to='/featured-blogs'>Featured Blogs</NavLink></li>
+                <li><NavLink to='/wishlist'>Wishlist</NavLink></li>
             </div>
             <div className="flex-none gap-2">
                 <div className="dropdown dropdown-end">

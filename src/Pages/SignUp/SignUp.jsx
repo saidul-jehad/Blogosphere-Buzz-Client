@@ -2,7 +2,7 @@ import Lottie from "lottie-react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import animation from '../../../public/Animation - 1715333706721.json'
 import { useState } from "react";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 
@@ -11,7 +11,7 @@ const SignUp = () => {
     const [passwordError, setPasswordError] = useState('')
     const [registerError, setRegisterError] = useState('')
     const [registerSuccess, setRegisterSuccess] = useState('')
-    const { setLoading, createUser, updateUserProfile } = useAuth()
+    const { createUser, updateUserProfile } = useAuth()
 
     const location = useLocation()
     const navigate = useNavigate()
