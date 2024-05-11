@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 const AddBlog = () => {
 
     const { user } = useAuth()
-
+    console.log(user);
     const handleAddBlog = event => {
         event.preventDefault()
         const form = event.target;
@@ -16,10 +16,12 @@ const AddBlog = () => {
         const long_description = form.longDescription.value
         const image = form.photoURL.value
         const bloggerEmail = form.email.value
+        const bloggerName = user.displayName
+        const bloggerProfilePic = user.photoURL
         const category = form.category.value
 
 
-        const blog = { title, short_description, long_description, image, bloggerEmail, category }
+        const blog = { title, short_description, long_description, image, bloggerEmail, category, bloggerName, bloggerProfilePic }
         console.log(blog);
 
         // send data to the server

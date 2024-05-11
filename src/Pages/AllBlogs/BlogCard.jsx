@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
 
 const BlogCard = ({ blog }) => {
     const { category, image, long_description, short_description, title, _id } = blog
+
+
 
     return (
         <div className="card card-compact bg-base-100 shadow-xl border ">
@@ -13,8 +16,8 @@ const BlogCard = ({ blog }) => {
                 <p>{short_description}</p>
 
                 <div className="card-actions justify-end mt-6">
-                    <button className="btn btn-ghost">Show Details</button>
-                    <button className="btn btn-ghost">Wishlist</button>
+                    <Link to={`/blog/${_id}`}><button className="btn btn-ghost">Show Details</button></Link>
+                    <Link to='/'> <button className="btn btn-ghost">Wishlist</button></Link>
                 </div>
             </div>
         </div>
