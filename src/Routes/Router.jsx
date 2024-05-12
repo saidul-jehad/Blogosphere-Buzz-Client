@@ -7,6 +7,8 @@ import Error from "../Pages/Error/Error";
 import AllBlogs from "../Pages/AllBlogs/AllBlogs";
 import AddBlog from "../Pages/AddBlog/AddBlog";
 import BlogDetails from "../Pages/AllBlogs/BlogDetails";
+import UpdateBlog from "../Pages/AllBlogs/UpdateBlog/UpdateBlog";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -36,6 +38,12 @@ const router = createBrowserRouter([
             {
                 path: '/add-blog',
                 element: <AddBlog></AddBlog>
+            },
+            {
+                path: '/update-blog/:id',
+                element: <PrivateRoute><UpdateBlog></UpdateBlog></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/blog/${params.id}`)
+
             },
             {
                 path: '/blog/:id',

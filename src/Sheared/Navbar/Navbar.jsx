@@ -15,17 +15,21 @@ const Navbar = () => {
             .catch(error => console.log(error))
     }
 
+    const navLinks = <>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/add-blog'>Add Blog</NavLink></li>
+        <li><NavLink to='/all-blogs'>All blogs</NavLink></li>
+        <li><NavLink to='/featured-blogs'>Featured Blogs</NavLink></li>
+        <li><NavLink to='/wishlist'>Wishlist</NavLink></li>
+    </>
+
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
                 <a className="btn btn-ghost text-xl">BLOGOSPHERE BUZZ</a>
             </div>
-            <div className=" justify-center">
-                <li><NavLink to='/'>Home</NavLink></li>
-                <li><NavLink to='/add-blog'>Add Blog</NavLink></li>
-                <li><NavLink to='/all-blogs'>All blogs</NavLink></li>
-                <li><NavLink to='/featured-blogs'>Featured Blogs</NavLink></li>
-                <li><NavLink to='/wishlist'>Wishlist</NavLink></li>
+            <div className=" justify-center hidden lg:flex">
+                {navLinks}
             </div>
             <div className="flex-none gap-2">
                 <div className="dropdown dropdown-end">
@@ -48,6 +52,9 @@ const Navbar = () => {
                             <li><Link to='/'>Home</Link></li>
                             <li><Link to='/signUp'>SignUp</Link></li>
                             <li onClick={handleLogout}><a>Logout</a></li>
+                            {
+                                navLinks
+                            }
 
                         </ul>
                     }
