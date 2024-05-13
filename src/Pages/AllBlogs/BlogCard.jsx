@@ -1,8 +1,24 @@
+
+import axios from "axios";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+// import { useEffect } from "react";
 
 const BlogCard = ({ blog }) => {
+    const { user } = useAuth()
     const { category, image, long_description, short_description, title, _id } = blog
+    const id = _id
+    const userEmail = user?.email
+    const wishlist = { id, userEmail, ...blog}
 
+
+    const handleAddWishlist = () => {
+        axios.post('http://localhost:5000/add-wishlist', wishlist )
+            .then(res => {
+                const data = res.data
+                console.log(data);
+            })
+    }
 
 
     return (
@@ -17,7 +33,7 @@ const BlogCard = ({ blog }) => {
 
                 <div className="card-actions justify-end mt-6">
                     <Link to={`/blog/${_id}`}><button className="btn btn-outline btn-accent">Show Details</button></Link>
-                    <Link to='/'> <button className="btn btn-outline btn-accent">Wishlist</button></Link>
+                    <button onClick={handleAddWishlist} className="btn btn-outline btn-accent">Wishlist</button>
                 </div>
             </div>
         </div>
