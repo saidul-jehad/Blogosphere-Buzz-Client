@@ -16,8 +16,8 @@ const BlogCard = ({ blog }) => {
                 <p>{short_description}</p>
 
                 <div className="card-actions justify-end mt-6">
-                    <Link to={`/blog/${_id}`}><button className="btn btn-ghost">Show Details</button></Link>
-                    <Link to='/'> <button className="btn btn-ghost">Wishlist</button></Link>
+                    <Link to={`/blog/${_id}`}><button className="btn btn-outline btn-accent">Show Details</button></Link>
+                    <Link to='/'> <button className="btn btn-outline btn-accent">Wishlist</button></Link>
                 </div>
             </div>
         </div>
