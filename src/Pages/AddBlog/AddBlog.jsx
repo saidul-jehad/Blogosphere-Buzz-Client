@@ -1,6 +1,7 @@
 import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import moment from "moment";
 
 
 const AddBlog = () => {
@@ -10,7 +11,6 @@ const AddBlog = () => {
     const handleAddBlog = event => {
         event.preventDefault()
         const form = event.target;
-
         const title = form.title.value
         const short_description = form.shortDescription.value
         const long_description = form.longDescription.value
@@ -19,9 +19,11 @@ const AddBlog = () => {
         const bloggerName = user.displayName
         const bloggerProfilePic = user.photoURL
         const category = form.category.value
+        const timeStamp = new Date()
+        const displayTime = moment().format("DD MMMM, YYYY, h:mm A")
 
 
-        const blog = { title, short_description, long_description, image, bloggerEmail, category, bloggerName, bloggerProfilePic }
+        const blog = { title, short_description, long_description, image, bloggerEmail, category, bloggerName, bloggerProfilePic, timeStamp, displayTime }
         console.log(blog);
 
         // send data to the server
@@ -31,29 +33,10 @@ const AddBlog = () => {
                 const data = res.data
                 console.log(data);
                 if (data.insertedId) {
+                    form.reset()
                     toast.success("Blog Successfully added! ")
                 }
             })
-        // fetch('https://tour-ease-server.vercel.app/tourists', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(newTourists)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-
-        //         if (data.insertedId) {
-        //             Swal.fire({
-        //                 title: ' Add Success!',
-        //                 icon: 'success'
-        //             })
-        //         }
-        //     })
-
-
     }
 
     return (

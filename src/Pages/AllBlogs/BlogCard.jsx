@@ -6,7 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 
 const BlogCard = ({ blog }) => {
     const { user } = useAuth()
-    const { category, image, long_description, short_description, title, _id } = blog
+    const { category, image, long_description, short_description, title, _id, displayTime } = blog
     const id = _id
     const userEmail = user?.email
     const wishlist = { id, userEmail, ...blog}
@@ -30,6 +30,7 @@ const BlogCard = ({ blog }) => {
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
                 <p>{short_description}</p>
+                <p className="mt-4"><span className="mr-2 mt">Posted Time :</span>{displayTime}</p>
 
                 <div className="card-actions justify-end mt-6">
                     <Link to={`/blog/${_id}`}><button className="btn btn-outline btn-accent">Show Details</button></Link>

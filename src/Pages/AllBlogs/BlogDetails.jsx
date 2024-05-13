@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const BlogDetails = () => {
     const blog = useLoaderData()
-    const { category, image, long_description, short_description, title, _id, bloggerEmail } = blog
+    const { category, image, long_description, short_description, title, _id, bloggerEmail, bloggerName, bloggerProfilePic, timeStamp, displayTime } = blog
     const { user } = useAuth()
     const [comments, setComments] = useState([])
 
@@ -81,11 +81,11 @@ const BlogDetails = () => {
                             <p className="inline-block mt-2 text-blue-500 hover:text-blue-400">{long_description}</p>
 
                             <div className="flex items-center mt-6">
-                                <img className="object-cover object-center w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt="" />
+                                <img className="object-cover object-center w-10 h-10 rounded-full" src={bloggerProfilePic} alt="" />
 
                                 <div className="mx-4">
-                                    <h1 className="text-sm text-gray-700 dark:text-gray-200">Amelia. Anderson</h1>
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">Lead Developer</p>
+                                    <h1 className="text-sm text-gray-700 dark:text-gray-200">{bloggerName}</h1>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">{displayTime}</p>
                                 </div>
                             </div>
 
@@ -103,7 +103,11 @@ const BlogDetails = () => {
 
             {/* comments */}
             <div className="p-2 my-8">
-                <h3 className="text-xl">Comments</h3>
+
+                {
+                    (comments.length > 0) && <h3 className="text-xl">Comments</h3>
+                }
+                
                 {
                     comments?.map(comment => <Comment
                         key={comment._id}
