@@ -8,39 +8,32 @@ const AllBlogs = () => {
     // const loadedBlogs = useLoaderData()
     const [blogs, setBlogs] = useState([])
     const [category, setCategory] = useState('')
-    // const [search, setSearch] = useState(null)
+    const [search, setSearch] = useState(null)
     // const { category: selectedCategoey } = useParams()
     // setBlogs(loadedBlogs)
 
 
+
     useEffect(() => {
-        axios.get(category === "All" ? `http://localhost:5000/blogs` : `http://localhost:5000/blogs/${category}`)
+        axios.get(search ? `http://localhost:5000/blog-search/${search}` : category === "All" ? `http://localhost:5000/blogs` : `http://localhost:5000/blogs/${category}`)
             .then(res => {
                 const data = res.data
+
                 setBlogs(data)
             })
-    }, [category])
+    }, [category, search])
 
     const handleFilter = (event) => {
         event.preventDefault()
         setCategory(event.target.value)
+        setSearch(null)
     }
 
-    const getSearchData = async (search) => {
-        console.log(search);
-        // const { data } = await axios.get(`http://localhost:5000/blog-search/${search}`)
-        // console.log(data);
-        // setBlogs(data)
-    }
-
-    // useEffect(() => {
-
-    //     return getSearchData
-    // }, [])
     const handleSearch = event => {
         event.preventDefault()
-        const search = event.target.search.value;
-        getSearchData(search)
+        const form = event.target
+        const search = form.search.value;
+        setSearch(search)
     }
 
 
