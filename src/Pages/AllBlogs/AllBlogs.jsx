@@ -28,9 +28,9 @@ const AllBlogs = () => {
 
     const getSearchData = async (search) => {
         console.log(search);
-        const { data } = await axios.get(`http://localhost:5000/blog-search/${search}`)
-        console.log(data);
-        setBlogs(data)
+        // const { data } = await axios.get(`http://localhost:5000/blog-search/${search}`)
+        // console.log(data);
+        // setBlogs(data)
     }
 
     // useEffect(() => {

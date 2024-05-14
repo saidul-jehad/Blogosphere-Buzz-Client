@@ -1,4 +1,5 @@
 import Hero from "../Hero/Hero";
+import NewsLetter from "../NewsLetter/NewsLetter";
 import RecentBlogs from "../RecentBlogs.jsx/RecentBlogs";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
             <Hero></Hero>
             <RecentBlogs></RecentBlogs>
+            <NewsLetter></NewsLetter>
         </div>
     );
 };

@@ -2,6 +2,7 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 // import { useEffect } from "react";
 
 const BlogCard = ({ blog }) => {
@@ -9,14 +10,19 @@ const BlogCard = ({ blog }) => {
     const { category, image, long_description, short_description, title, _id, displayTime } = blog
     const id = _id
     const userEmail = user?.email
-    const wishlist = { id, userEmail, ...blog}
+    const wishlist = { id, userEmail, ...blog }
 
 
     const handleAddWishlist = () => {
-        axios.post('http://localhost:5000/add-wishlist', wishlist )
+        axios.post('http://localhost:5000/add-wishlist', wishlist)
             .then(res => {
                 const data = res.data
-                console.log(data);
+                if (data.insertedId) {
+                    toast.success("Wishlist successfully added")
+                }
+            })
+            .catch(err => {
+                toast.error(err.response.data)
             })
     }
 

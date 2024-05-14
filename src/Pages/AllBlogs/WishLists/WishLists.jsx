@@ -21,7 +21,7 @@ const WishLists = () => {
 
     console.log(wishlists);
     return (
-        <div className="grid grid-cols-1  lg:grid-cols-2 gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-7">
             {
                 wishlists.map(wishlist => <WishlistCard
                     key={wishlist._id}

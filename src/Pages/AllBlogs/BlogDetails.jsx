@@ -107,7 +107,7 @@ const BlogDetails = () => {
                 {
                     (comments.length > 0) && <h3 className="text-xl">Comments</h3>
                 }
-                
+
                 {
                     comments?.map(comment => <Comment
                         key={comment._id}

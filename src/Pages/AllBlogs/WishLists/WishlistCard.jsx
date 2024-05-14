@@ -20,7 +20,7 @@ const WishlistCard = ({ wishlist, getWishlist }) => {
     return (
         <div className="card card-compact bg-base-100 shadow-xl border flex-col md:flex-row">
             <div className="p-4 relative flex flex-col">
-                <figure><img className="w-full lg:min-h-36  rounded-xl" src={image} alt="Blog Image" /></figure>
+                <figure><img className="w-full lg:min-h-36 md:max-w-[300px] rounded-xl" src={image} alt="Blog Image" /></figure>
                 <p className=" badge badge-success  text-white absolute top-[9%] left-5">{category}</p>
             </div>
 
