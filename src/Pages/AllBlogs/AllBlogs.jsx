@@ -15,7 +15,7 @@ const AllBlogs = () => {
 
 
     useEffect(() => {
-        axios.get(search ? `http://localhost:5000/blog-search/${search}` : category === "All" ? `http://localhost:5000/blogs` : `http://localhost:5000/blogs/${category}`)
+        axios.get(search ? `https://blogosphere-buzz-server.vercel.app/blog-search/${search}` : category === "All" ? `https://blogosphere-buzz-server.vercel.app/blogs` : `https://blogosphere-buzz-server.vercel.app/blogs/${category}`, {withCredentials: true})
             .then(res => {
                 const data = res.data
 

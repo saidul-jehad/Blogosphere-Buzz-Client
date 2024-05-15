@@ -18,14 +18,16 @@ const Navbar = () => {
 
     const navLinks = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/add-blog'>Add Blog</NavLink></li>
         <li><NavLink to='/all-blogs'>All blogs</NavLink></li>
         <li><NavLink to='/featured-blogs'>Featured Blogs</NavLink></li>
-        <li><NavLink to='/wishlist'>Wishlist</NavLink></li>
+        {
+            user && <><li><NavLink to='/add-blog'>Add Blog</NavLink></li>
+                <li><NavLink to='/wishlist'>Wishlist</NavLink></li></>
+        }
     </>
 
     return (
-        <div className=" dark:bg-black navbar shadow-xl rounded-md mb-[50px]">
+        <div className=" dark:bg-black navbar shadow-xl rounded-md mb-[50px] ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -37,10 +39,11 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl"> <img className="h-8 w-7 rounded-sm" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIoHA-5zG2KnleyJfDiEIVoQL84WynX3ea9jEZKeD0tA&s" alt="" />Blogosphere Buzz</a>
+                <a className="btn btn-ghost text-xl"> <img className="h-8 w-7 rounded-sm hidden lg:flex" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIoHA-5zG2KnleyJfDiEIVoQL84WynX3ea9jEZKeD0tA&s" alt="" />Blogosphere Buzz</a>
             </div>
+
             <div className="lg:navbar-center hidden lg:flex">
-                <ul className="menu tab menu-horizontal px-1">
+                <ul className="menu menu-horizontal  px-1">
 
                     {
                         navLinks

@@ -8,16 +8,12 @@ import toast from "react-hot-toast";
 
 const BlogDetails = () => {
     const blog = useLoaderData()
-    const { category, image, long_description, short_description, title, _id, bloggerEmail, bloggerName, bloggerProfilePic, timeStamp, displayTime } = blog
+    const { category, image, long_description, short_description, title, _id, bloggerEmail, bloggerName, bloggerProfilePic, displayTime } = blog
     const { user } = useAuth()
     const [comments, setComments] = useState([])
 
 
     // const time = timeStamp()
-
-
-
-
     const handleComment = event => {
         event.preventDefault()
         const commentText = event.target.comment.value
@@ -28,7 +24,7 @@ const BlogDetails = () => {
         const id = _id
         const comment = { name, profilePic, commentText, timeStamp, id, displayTime }
         if (commentText.length === 0) {
-            console.log(commentText.length);
+            // console.log(commentText.length);
             return
         }
 
@@ -39,15 +35,15 @@ const BlogDetails = () => {
 
 
         // add comment 
-        axios.post('http://localhost:5000/add-comment', comment)
-            .then(res => {
-                console.log(res.data);
+        axios.post('https://blogosphere-buzz-server.vercel.app/add-comment', comment)
+            .then(() => {
+                // console.log(res.data);
                 commentData()
             })
     }
 
     const commentData = async () => {
-        const { data } = await axios.get(`http://localhost:5000/comment/${_id}`)
+        const { data } = await axios.get(`https://blogosphere-buzz-server.vercel.app/comment/${_id}`)
         setComments(data)
     }
 

@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, updateProfile, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import auth from "../Firebase/firebase.config";
+import axios from "axios";
 
 
 export const AuthContext = createContext(null)
@@ -9,6 +10,8 @@ export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+
+
     const googleProvider = new GoogleAuthProvider()
 
     // google signIn
@@ -57,8 +60,27 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
+            const userEmail = currentUser?.email || user?.email
+            const loggedUser = { email: userEmail }
+
+            // console.log(loggedUser);
+
             setUser(currentUser)
             setLoading(false)
+
+            // token issue if user exits
+            if (currentUser) {
+                axios.post("https://blogosphere-buzz-server.vercel.app/jwt", loggedUser, { withCredentials: true })
+                    .then(() => {
+                        // console.log("token response", res.data);
+                    })
+            }
+            else {
+                axios.post("https://blogosphere-buzz-server.vercel.app/logout", loggedUser, { withCredentials: true })
+                    .then(() => {
+                        // console.log(res.data);
+                    })
+            }
         })
 
         return () => {

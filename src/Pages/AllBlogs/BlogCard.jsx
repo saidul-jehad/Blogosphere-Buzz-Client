@@ -1,20 +1,37 @@
 
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
-// import { useEffect } from "react";
+import 'animate.css';
+
 
 const BlogCard = ({ blog }) => {
+    const navigate = useNavigate()
     const { user } = useAuth()
-    const { category, image, long_description, short_description, title, _id, displayTime } = blog
+    const { category, image, short_description, title, _id, displayTime } = blog
+    const wBlogs = {
+        image: blog.image,
+        long_description: blog.long_description,
+        category: blog.category,
+        short_description: blog.short_description,
+        title: blog.title, _id,
+        bloggerEmail: blog.bloggerEmail,
+        bloggerName: blog.bloggerName,
+        bloggerProfilePic: blog.bloggerProfilePic,
+        timeStamp: blog.timeStamp,
+        displayTime: blog.displayTime
+    }
     const id = _id
     const userEmail = user?.email
-    const wishlist = { id, userEmail, ...blog }
+    const wishlist = { id, userEmail, ...wBlogs }
 
 
     const handleAddWishlist = () => {
-        axios.post('http://localhost:5000/add-wishlist', wishlist)
+        if (!user) {
+            return navigate('/login')
+        }
+        axios.post('https://blogosphere-buzz-server.vercel.app/add-wishlist', wishlist)
             .then(res => {
                 const data = res.data
                 if (data.insertedId) {
@@ -28,7 +45,7 @@ const BlogCard = ({ blog }) => {
 
 
     return (
-        <div className="card card-compact bg-base-100 shadow-xl border ">
+        <div className="card card-compact bg-base-100 shadow-xl border animate__animated animate__pulse">
             <div className="p-4 relative">
                 <figure><img className="w-full rounded-xl" src={image} alt="Blog Image" /></figure>
                 <p className=" badge badge-success  text-white absolute top-[9%] left-5">{category}</p>

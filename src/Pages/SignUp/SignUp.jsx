@@ -61,12 +61,12 @@ const SignUp = () => {
 
         // create user 
         createUser(email, password)
-            .then(result => {
+            .then(() => {
                 updateUserProfile(name, photoURL, email)
                 setRegisterSuccess('Account successfully created')
                 toast.success("Account successfully created");
                 navigate(location?.state ? location.state : '/')
-                console.log(result.user);
+                // console.log(result.user);
             })
             .catch(error => {
                 setRegisterError(error.message)

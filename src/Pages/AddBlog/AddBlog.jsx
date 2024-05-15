@@ -7,7 +7,7 @@ import moment from "moment";
 const AddBlog = () => {
 
     const { user } = useAuth()
-    console.log(user);
+    // console.log(user);
     const handleAddBlog = event => {
         event.preventDefault()
         const form = event.target;
@@ -24,11 +24,11 @@ const AddBlog = () => {
 
 
         const blog = { title, short_description, long_description, image, bloggerEmail, category, bloggerName, bloggerProfilePic, timeStamp, displayTime }
-        console.log(blog);
+        // console.log(blog);
 
         // send data to the server
 
-        axios.post('http://localhost:5000/add-blog', blog)
+        axios.post('https://blogosphere-buzz-server.vercel.app/add-blog', blog)
             .then(res => {
                 const data = res.data
                 console.log(data);

@@ -3,10 +3,10 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 const WishlistCard = ({ wishlist, getWishlist }) => {
-    const { category, image, long_description, short_description, title, _id } = wishlist
+    const { category, image, short_description, title, _id } = wishlist
 
     const handleDelete = () => {
-        axios.delete(`http://localhost:5000/wishlist/${_id}`)
+        axios.delete(`https://blogosphere-buzz-server.vercel.app/wishlist/${_id}`)
             .then(res => {
                 const data = res.data
                 if (data.deletedCount > 0) {
@@ -25,7 +25,7 @@ const WishlistCard = ({ wishlist, getWishlist }) => {
             </div>
 
             <div className="card-body">
-                <h2 className="card-title">{title}</h2>
+                <h2 className="card-title font-playfair">{title}</h2>
                 <p>{short_description}</p>
 
                 <div className="card-actions justify-end mt-6">

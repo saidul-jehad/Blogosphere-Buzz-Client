@@ -21,14 +21,14 @@ const UpdateBlog = () => {
 
 
         const newBlog = { title, short_description, long_description, image, bloggerEmail, category, }
-        console.log(newBlog);
+        // console.log(newBlog);
 
         // send data to the server
 
-        axios.put(`http://localhost:5000/update-blog/${_id}`, newBlog)
+        axios.put(`https://blogosphere-buzz-server.vercel.app/update-blog/${_id}`, newBlog)
             .then(res => {
                 const data = res.data
-                console.log(data);
+                // console.log(data);
                 if (data.modifiedCount > 0) {
                     toast.success("Blog Successfully Updated! ")
                     navigate(-1)

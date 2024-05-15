@@ -10,6 +10,7 @@ import BlogDetails from "../Pages/AllBlogs/BlogDetails";
 import UpdateBlog from "../Pages/AllBlogs/UpdateBlog/UpdateBlog";
 import PrivateRoute from "./PrivateRoute";
 import WishLists from "../Pages/AllBlogs/WishLists/WishLists";
+import FeaturedBlogs from "../Pages/FeaturedBlogs/FeaturedBlogs";
 
 
 
@@ -34,27 +35,31 @@ const router = createBrowserRouter([
             {
                 path: '/all-blogs',
                 element: <AllBlogs></AllBlogs>,
-                // loader: () => fetch('http://localhost:5000/blogs')
             },
             {
                 path: '/add-blog',
-                element: <AddBlog></AddBlog>
+                element: <PrivateRoute><AddBlog></AddBlog></PrivateRoute>
             },
             {
                 path: '/update-blog/:id',
                 element: <PrivateRoute><UpdateBlog></UpdateBlog></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/blog/${params.id}`)
+                loader: ({ params }) => fetch(`https://blogosphere-buzz-server.vercel.app/blog/${params.id}`)
 
             },
             {
                 path: '/blog/:id',
-                element: <BlogDetails></BlogDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/blog/${params.id}`)
+                element: <PrivateRoute><BlogDetails></BlogDetails></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://blogosphere-buzz-server.vercel.app/blog/${params.id}`)
             },
 
             {
                 path: '/wishlist',
-                element: <WishLists></WishLists>
+                element: <PrivateRoute><WishLists></WishLists></PrivateRoute>
+            },
+            {
+                path: '/featured-blogs',
+                element: <FeaturedBlogs></FeaturedBlogs>,
+                loader: () => fetch('https://blogosphere-buzz-server.vercel.app/top-blogs')
             }
         ]
     },
